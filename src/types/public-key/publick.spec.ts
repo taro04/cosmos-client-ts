@@ -13,7 +13,7 @@ describe('pubkey', () => {
     const pubkey = cosmosclient.AccPublicKey.fromPrivateKey(privKey);
 
     const str = 'ununifipub1addwnpepq0u4zl9r2x4ks82mjetexffsdduruqkmmtmqnx68dfkuy2yr275e53rn0e4';
-    expect(pubkey).toStrictEqual(str);
+    expect(pubkey.toString()).toStrictEqual(str);
   });
 
   it('ed25519', () => {
@@ -45,14 +45,14 @@ describe('pubkey', () => {
 
     const bytes = new Uint8Array(crypto.randomBytes(32));
     const key = new proto.cosmos.crypto.secp256k1.PrivKey({ key: bytes });
-    const address = cosmosclient.AccPublicKey.fromPublicKey(key.pubKey());
+    const address = cosmosclient.AccPublicKey.fromPrivateKey(key);
     const str = address.toString();
     const revived = cosmosclient.AccPublicKey.fromString(str);
 
-    console.log('secp256k1', str);
+    console.log('revived', str);
     expect(revived.toString()).toStrictEqual(str);
 
-    const ValPublicKey = cosmosclient.ValPublicKey.fromPublicKey(key.pubKey());
+    const ValPublicKey = cosmosclient.ValPublicKey.fromPrivateKey(key);
 
     console.log('secp256k1', ValPublicKey.toString().split('1')[1].length);
     expect(address.toString().split('1')[1]).toHaveLength(ValPublicKey.toString().split('1')[1].length);
@@ -74,8 +74,8 @@ describe('pubkey', () => {
       key: Buffer.from(privKeyStr, 'hex'),
     });
 
-    const address1 = cosmosclient.AccPublicKey.fromPublicKey(privKey1.pubKey());
-    const address2 = cosmosclient.AccPublicKey.fromPublicKey(privKey2.pubKey());
+    const address1 = cosmosclient.AccPublicKey.fromPrivateKey(privKey1);
+    const address2 = cosmosclient.AccPublicKey.fromPrivateKey(privKey2);
 
     console.log(address2.toString());
     expect(address1.toString()).toBe('cosmos1aqt94lggum9v9xhuyppaawtjwra76mj8mjdgm5');
@@ -94,8 +94,8 @@ describe('pubkey', () => {
       key: Buffer.from(privKeyStr, 'hex'),
     });
 
-    const AccPublicKey = cosmosclient.AccPublicKey.fromPublicKey(privKey.pubKey());
-    const ValPublicKey = cosmosclient.ValPublicKey.fromPublicKey(privKey.pubKey());
+    const AccPublicKey = cosmosclient.AccPublicKey.fromPrivateKey(privKey);
+    const ValPublicKey = cosmosclient.ValPublicKey.fromPrivateKey(privKey);
 
     console.log('convert', ValPublicKey.toString());
     expect(AccPublicKey.toValAddress().toString()).toStrictEqual(ValPublicKey.toString());

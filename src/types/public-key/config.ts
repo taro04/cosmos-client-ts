@@ -1,13 +1,12 @@
-/*
-import { AddressPrefix } from './prefix';
+import { PublicKeyPrefix } from './prefix';
 
 export const bech32Prefix = {
-  accAddr: AddressPrefix.Cosmos as string,
-  accPub: AddressPrefix.Cosmos + AddressPrefix.Public,
-  valAddr: AddressPrefix.Cosmos + AddressPrefix.Validator + AddressPrefix.Operator,
-  valPub: AddressPrefix.Cosmos + AddressPrefix.Validator + AddressPrefix.Operator + AddressPrefix.Public,
-  consAddr: AddressPrefix.Cosmos + AddressPrefix.Validator + AddressPrefix.Consensus,
-  consPub: AddressPrefix.Cosmos + AddressPrefix.Validator + AddressPrefix.Consensus + AddressPrefix.Public,
+  accAddr: PublicKeyPrefix.Cosmos as string,
+  accPub: PublicKeyPrefix.Cosmos + PublicKeyPrefix.Public,
+  valAddr: PublicKeyPrefix.Cosmos + PublicKeyPrefix.Validator + PublicKeyPrefix.Operator,
+  valPub: PublicKeyPrefix.Cosmos + PublicKeyPrefix.Validator + PublicKeyPrefix.Operator + PublicKeyPrefix.Public,
+  consAddr: PublicKeyPrefix.Cosmos + PublicKeyPrefix.Validator + PublicKeyPrefix.Consensus,
+  consPub: PublicKeyPrefix.Cosmos + PublicKeyPrefix.Validator + PublicKeyPrefix.Consensus + PublicKeyPrefix.Public,
 };
 
 export function setBech32Prefix(value: typeof bech32Prefix) {
@@ -18,4 +17,3 @@ export function setBech32Prefix(value: typeof bech32Prefix) {
   bech32Prefix.consAddr = value.consAddr;
   bech32Prefix.consPub = value.consPub;
 }
-*/
