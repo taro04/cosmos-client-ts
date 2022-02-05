@@ -1,10 +1,12 @@
 import { cosmosclient, proto } from '../..';
-import { setBech32Prefix } from './config';
+
+//import { setBech32Prefix } from './config';
 
 describe('address', () => {
   it('prefix', async () => {
     expect.hasAssertions();
 
+    /*
     setBech32Prefix({
       accAddr: 'jpyx',
       accPub: 'jpyxpub',
@@ -13,6 +15,7 @@ describe('address', () => {
       consAddr: 'jpyxvalcons',
       consPub: 'jpyxvalconspub',
     });
+    */
     const privKey = new proto.cosmos.crypto.secp256k1.PrivKey({
       key: await cosmosclient.generatePrivKeyFromMnemonic('joke door law post fragile cruel torch silver siren mechanic flush surround'),
     });

@@ -1,5 +1,5 @@
-import * as crypto from 'crypto';
 import { proto, cosmosclient } from '../..';
+import * as crypto from 'crypto';
 
 describe('address', () => {
   it('ed25519', () => {
@@ -20,6 +20,9 @@ describe('address', () => {
 
   it('secp256k1', () => {
     expect.hasAssertions();
+    //A: randomByte -> privkeyObj -> accAddrStr
+    //B: accAddrStr -> accAddrStr
+    //A = B ?
 
     const bytes = new Uint8Array(crypto.randomBytes(32));
     const key = new proto.cosmos.crypto.secp256k1.PrivKey({ key: bytes });
@@ -27,14 +30,21 @@ describe('address', () => {
     const str = address.toString();
     const revived = cosmosclient.AccAddress.fromString(str);
 
+    console.log('secp256k1', str);
     expect(revived.toString()).toStrictEqual(str);
 
     const valAddress = cosmosclient.ValAddress.fromPublicKey(key.pubKey());
 
+    console.log('secp256k1', valAddress.toString().split('1')[1].length);
     expect(address.toString().split('1')[1]).toHaveLength(valAddress.toString().split('1')[1].length);
   });
 
   it('accaddress', async () => {
+    //A: privkeyStr(ed25519) -> privkeyObj -> accAddr
+    //B: privkeyStr(spk256k1) -> privkeyObj -> accAddr
+    //A = "str" ?
+    //B = "str" ?
+
     expect.hasAssertions();
     const privKeyStr = 'ef40ea14839c3ee5690336bb1f032870941dbb329fc0553132a4a109a022a391';
 
@@ -49,12 +59,15 @@ describe('address', () => {
     const address2 = cosmosclient.AccAddress.fromPublicKey(privKey2.pubKey());
 
     console.log(address2.toString());
-
-    expect(address1.toString()).toStrictEqual('cosmos1aqt94lggum9v9xhuyppaawtjwra76mj8mjdgm5');
-    expect(address2.toString()).toStrictEqual('cosmos14ynfqqa6j5k3kcqm2ymf3l66d9x07ysxgnvdyx');
+    expect(address1.toString()).toBe('cosmos1aqt94lggum9v9xhuyppaawtjwra76mj8mjdgm5');
+    expect(address2.toString()).toBe('cosmos14ynfqqa6j5k3kcqm2ymf3l66d9x07ysxgnvdyx');
   });
 
   it('convert', async () => {
+    //A: privkeyStr -> privkeyObj -> accAddr -> valAddr
+    //B: privkeyStr -> privkeyObj -> valAddr
+    //A = B ?
+
     expect.hasAssertions();
     const privKeyStr = 'ef40ea14839c3ee5690336bb1f032870941dbb329fc0553132a4a109a022a391';
 
@@ -65,6 +78,7 @@ describe('address', () => {
     const accAddress = cosmosclient.AccAddress.fromPublicKey(privKey.pubKey());
     const valAddress = cosmosclient.ValAddress.fromPublicKey(privKey.pubKey());
 
+    console.log('convert', valAddress.toString());
     expect(accAddress.toValAddress().toString()).toStrictEqual(valAddress.toString());
   });
 });

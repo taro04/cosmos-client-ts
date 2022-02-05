@@ -1,4 +1,4 @@
-export * from './acc-address';
-export * from './cons-address';
-export * from './val-address';
+export * from './acc-publickey';
+export * from './cons-publickey';
+export * from './val-publickey';
 export * from './prefix';
