@@ -1,3 +1,4 @@
+/*
 export enum AddressPrefix {
   Cosmos = 'cosmos',
   Public = 'pub',
@@ -6,3 +7,4 @@ export enum AddressPrefix {
   Operator = 'oper',
   Consensus = 'cons',
 }
+*/

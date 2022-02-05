@@ -1,7 +1,7 @@
-import * as bech32 from 'bech32';
 import { config } from '../../config/';
 import { PubKey } from '../crypto';
 import { Address } from './address';
+import * as bech32 from 'bech32';
 
 /**
  * AccAddress

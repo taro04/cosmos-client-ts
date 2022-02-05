@@ -20,7 +20,7 @@ describe('address', () => {
       key: await cosmosclient.generatePrivKeyFromMnemonic('joke door law post fragile cruel torch silver siren mechanic flush surround'),
     });
     const pubKey = privKey.pubKey();
-    const address = cosmosclient.AccAddress.fromPublicKey(pubKey);
+    const address = cosmosclient.AccPublicKey.fromPublicKey(pubKey);
 
     expect(address.toString().startsWith('jpyx')).toBeTruthy();
   });

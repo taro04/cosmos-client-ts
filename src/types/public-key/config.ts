@@ -1,3 +1,4 @@
+/*
 import { AddressPrefix } from './prefix';
 
 export const bech32Prefix = {
@@ -17,3 +18,4 @@ export function setBech32Prefix(value: typeof bech32Prefix) {
   bech32Prefix.consAddr = value.consAddr;
   bech32Prefix.consPub = value.consPub;
 }
+*/

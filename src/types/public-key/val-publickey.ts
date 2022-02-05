@@ -1,12 +1,12 @@
 import { config } from '../../config';
 import { PrivKey } from '../crypto';
-import { Address } from './address';
+import { PublicKey } from './publicKey';
 import * as bech32 from 'bech32';
 
 /**
  * ValPublicKey
  */
-export class ValPublicKey extends Address {
+export class ValPublicKey extends PublicKey {
   /**
    *
    */
@@ -37,12 +37,12 @@ export class ValPublicKey extends Address {
   }
 }
 
-declare module './address' {
-  interface Address {
+declare module './publicKey' {
+  interface PublicKey {
     toValAddress(): ValPublicKey;
   }
 }
 
-Address.prototype.toValAddress = function () {
+PublicKey.prototype.toValAddress = function () {
   return new ValPublicKey(this.value());
 };

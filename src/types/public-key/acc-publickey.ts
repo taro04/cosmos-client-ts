@@ -1,12 +1,12 @@
 import { config } from '../../config/';
 import { PrivKey } from '../crypto';
-import { Address } from './address';
+import { PublicKey } from './publicKey';
 import * as bech32 from 'bech32';
 
 /**
  * AccPublicKey
  */
-export class AccPublicKey extends Address {
+export class AccPublicKey extends PublicKey {
   /**
    *
    */
@@ -32,17 +32,21 @@ export class AccPublicKey extends Address {
     return new AccPublicKey(new Uint8Array(bech32.fromWords(words)));
   }
 
+  /**
+   *
+   * @param privateKey
+   */
   static fromPrivateKey(privateKey: PrivKey) {
     return new AccPublicKey(privateKey.bytes());
   }
 }
 
-declare module './address' {
-  interface Address {
-    toAccAddress(): AccPublicKey;
+declare module './publicKey' {
+  interface PublicKey {
+    toAccPublicKey(): AccPublicKey;
   }
 }
 
-Address.prototype.toAccAddress = function () {
+PublicKey.prototype.toAccPublicKey = function () {
   return new AccPublicKey(this.value());
 };

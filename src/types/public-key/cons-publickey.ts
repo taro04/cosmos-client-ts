@@ -1,12 +1,12 @@
 import { config } from '../../config';
 import { PrivKey } from '../crypto';
-import { Address } from './address';
+import { PublicKey } from './publicKey';
 import * as bech32 from 'bech32';
 
 /**
  * ConsPublicKey
  */
-export class ConsPublicKey extends Address {
+export class ConsPublicKey extends PublicKey {
   /**
    *
    */
@@ -37,12 +37,12 @@ export class ConsPublicKey extends Address {
   }
 }
 
-declare module './address' {
-  interface Address {
+declare module './publicKey' {
+  interface PublicKey {
     toConsPublicKey(): ConsPublicKey;
   }
 }
 
-Address.prototype.toConsPublicKey = function () {
+PublicKey.prototype.toConsPublicKey = function () {
   return new ConsPublicKey(this.value());
 };
