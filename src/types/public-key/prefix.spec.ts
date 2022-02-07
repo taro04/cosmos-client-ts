@@ -19,9 +19,10 @@ describe('address', () => {
     const privKey = new proto.cosmos.crypto.secp256k1.PrivKey({
       key: await cosmosclient.generatePrivKeyFromMnemonic('joke door law post fragile cruel torch silver siren mechanic flush surround'),
     });
-    const pubKey = privKey.pubKey();
-    const address = cosmosclient.AccPublicKey.fromPublicKey(pubKey);
+    //const pubKey = privKey.pubKey();
+    const address = cosmosclient.AccPublicKey.fromPrivateKey(privKey);
+    console.log('revived', address.toString());
 
-    expect(address.toString().startsWith('jpyx')).toBeTruthy();
+    expect(address.toString().startsWith('ununifi')).toBeTruthy();
   });
 });

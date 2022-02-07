@@ -39,10 +39,10 @@ export class ValPublicKey extends PublicKey {
 
 declare module './publicKey' {
   interface PublicKey {
-    toValAddress(): ValPublicKey;
+    toValPublicKey(): ValPublicKey;
   }
 }
 
-PublicKey.prototype.toValAddress = function () {
+PublicKey.prototype.toValPublicKey = function () {
   return new ValPublicKey(this.value());
 };

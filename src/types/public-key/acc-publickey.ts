@@ -28,7 +28,6 @@ export class AccPublicKey extends PublicKey {
    */
   static fromString(accPublicKey: string) {
     const { words } = bech32.decode(accPublicKey);
-
     return new AccPublicKey(new Uint8Array(bech32.fromWords(words)));
   }
 

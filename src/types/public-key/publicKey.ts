@@ -1,4 +1,5 @@
-import { PubKey, PrivKey } from '../crypto';
+//import { PubKey, PrivKey } from '../crypto';
+//import { PubKey } from '../crypto';
 
 /**
  * Base class
@@ -26,15 +27,15 @@ export class PublicKey {
    *
    * @param pubKey
    */
-  static fromPublicKey(pubKey: PubKey) {
-    return new PublicKey(pubKey.bytes());
-  }
+  //static fromPublicKey(pubKey: PubKey) {
+  //  return new PublicKey(pubKey.bytes());
+  //}
 
   /**
    *
    * @param privateKey
    */
-  static fromPrivateKey(privateKey: PrivKey) {
-    return new PublicKey(privateKey.bytes());
-  }
+  //static fromPrivateKey(privateKey: PrivKey) {
+  //  return new PublicKey(privateKey.bytes());
+  //}
 }
